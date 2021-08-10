@@ -337,6 +337,9 @@ class App < Sinatra::Base
   get '/icons_generate' do
     file_names = db.query('SELECT name FROM image')
     file_names.each_with_index do |file_name, i|
+
+      STDERR.puts(file_name)
+
       statement = db.prepare('SELECT * FROM image WHERE name = ?')
       row = statement.execute(file_name['name']).first
       statement.close

@@ -337,7 +337,7 @@ class App < Sinatra::Base
   get '/icons_generate' do
     rows = db.query('SELECT * FROM image')
     rows.each do |row|
-      File.write("/home/isucon/isubata/webapp/public/icons/#{row['name']}", row['data'])
+      File.write("#{ENV['HOME']}/isucon/isubata/webapp/public/icons/#{row['name']}", row['data'])
     end
 
     return "done"

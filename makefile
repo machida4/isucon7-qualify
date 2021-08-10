@@ -8,7 +8,7 @@ restart: ## copy configs from repository to conf
 
 app-restart: ## Restart Server
 	@sudo systemctl daemon-reload
-## @bundle 1> /dev/null
+# @bundle 1> /dev/null
 	@sudo systemctl restart isubata.ruby.service
 	@echo 'Restart ruby'
 
@@ -33,7 +33,9 @@ alp: ## Run alp
 db-restart: ## Restart mysql
 	@sudo cp /dev/null /var/log/mysql/mysql-slow.log
 	@sudo cp my.cnf /etc/mysql/
-	@sudo systemctl restart mysql
+# restartだと設定反映されないっぽいのでstop, startする
+	@sudo systemctl stop mysql
+	@sudo systemctl start mysql
 	@echo 'Restart mysql'
 
 db-log: ## tail mysql.log

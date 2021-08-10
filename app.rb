@@ -334,7 +334,7 @@ class App < Sinatra::Base
     404
   end
 
-  get 'icons_generate' do
+  get '/icons_generate' do
     file_names = db.query('SELECT name FROM image')
     file_names.each_with_index do |file_name, i|
       statement = db.prepare('SELECT data FROM image WHERE name = ?')

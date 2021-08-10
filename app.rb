@@ -334,6 +334,20 @@ class App < Sinatra::Base
     404
   end
 
+  get 'icons_generate' do
+    file_names = db.query('SELECT name FROM image')
+    file_names.each_with_index do |file_name, i|
+      statement = db.prepare('SELECT data FROM image WHERE name = ?')
+      row = statement.execute(file_name).first
+      statement.close
+
+      ofile = File.open("/home/isucon/isubata/webapp/public/icons/" + file_name)
+      ofile.write(row['data'])
+      ofile.close()
+    end
+    return "done"
+  end
+
   private
 
   def db

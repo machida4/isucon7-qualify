@@ -8,7 +8,7 @@ restart: ## copy configs from repository to conf
 
 app-restart: ## Restart Server
 	@sudo systemctl daemon-reload
-	@bundle 1> /dev/null
+## @bundle 1> /dev/null
 	@sudo systemctl restart isubata.ruby.service
 	@echo 'Restart ruby'
 
